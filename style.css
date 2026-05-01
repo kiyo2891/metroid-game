@@ -71,13 +71,13 @@ canvas {
 #controls-right {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   align-items: center;
 }
 
 .action-row {
   display: flex;
-  gap: 4px;
+  gap: 10px;
 }
 
 .action-row-center {
@@ -85,13 +85,13 @@ canvas {
 }
 
 .ctrl-btn {
-  width: 56px;
-  height: 56px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.4);
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
@@ -110,7 +110,7 @@ canvas {
 #btn-jump {
   background: rgba(74, 222, 128, 0.25);
   border-color: #4ade80;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 #btn-attack {
@@ -121,7 +121,7 @@ canvas {
 #btn-dash {
   background: rgba(34, 211, 238, 0.25);
   border-color: #22d3ee;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* タッチデバイスのみコントロール表示・info 非表示 */
@@ -147,13 +147,13 @@ canvas {
     height: 40px;
   }
   .ctrl-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
+    width: 46px;
+    height: 46px;
+    font-size: 15px;
   }
   #btn-jump,
   #btn-dash {
-    font-size: 9px;
+    font-size: 10px;
   }
   canvas {
     max-height: calc(100dvh - 100px);
