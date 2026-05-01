@@ -2,12 +2,27 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Metroid-style Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="game" width="800" height="480"></canvas>
-<p class="info">← → 移動 / Space ジャンプ / Z 攻撃 / ↑ 扉に入る / Shift ダッシュ(要解放)</p>
+  <div id="game-wrapper">
+    <canvas id="game" width="800" height="480"></canvas>
+    <div id="controls">
+      <div id="controls-left">
+        <button id="btn-left"  class="ctrl-btn">◀</button>
+        <button id="btn-up"    class="ctrl-btn">▲</button>
+        <button id="btn-right" class="ctrl-btn">▶</button>
+      </div>
+      <div id="controls-right">
+        <button id="btn-dash"   class="ctrl-btn">DASH</button>
+        <button id="btn-attack" class="ctrl-btn">Z</button>
+        <button id="btn-jump"   class="ctrl-btn">JUMP</button>
+      </div>
+    </div>
+  </div>
+  <p class="info">← → 移動 / Space ジャンプ / Z 攻撃 / ↑ 扉に入る / Shift ダッシュ(要解放)</p>
   <script src="game.js"></script>
 </body>
 </html>

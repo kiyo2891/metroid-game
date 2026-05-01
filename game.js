@@ -544,7 +544,7 @@ function drawClearScreen() {
   ctx.fillText('ガーディアンを倒した!', canvas.width / 2, canvas.height / 2);
   ctx.font = '14px sans-serif';
   ctx.fillStyle = '#ccc';
-  ctx.fillText('Enter キーでもう一度プレイ', canvas.width / 2, canvas.height / 2 + 40);
+  ctx.fillText('Enter / タップでもう一度プレイ', canvas.width / 2, canvas.height / 2 + 40);
 }
 
 function draw() {
@@ -579,3 +579,28 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
+
+// ===== タッチコントロール =====
+(function () {
+  function bindTouchBtn(id, code) {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const press   = e => { e.preventDefault(); keys[code] = true; };
+    const release = e => { e.preventDefault(); keys[code] = false; };
+    btn.addEventListener('touchstart',  press,   { passive: false });
+    btn.addEventListener('touchend',    release, { passive: false });
+    btn.addEventListener('touchcancel', release, { passive: false });
+  }
+
+  bindTouchBtn('btn-left',   'ArrowLeft');
+  bindTouchBtn('btn-right',  'ArrowRight');
+  bindTouchBtn('btn-up',     'ArrowUp');
+  bindTouchBtn('btn-jump',   'Space');
+  bindTouchBtn('btn-attack', 'KeyZ');
+  bindTouchBtn('btn-dash',   'ShiftLeft');
+
+  // クリア画面タップ → リスタート
+  canvas.addEventListener('touchstart', e => {
+    if (gameState === 'cleared') { e.preventDefault(); location.reload(); }
+  }, { passive: false });
+})();

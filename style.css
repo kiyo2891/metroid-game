@@ -1,3 +1,5 @@
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin: 0;
   background: #111;
@@ -5,13 +7,115 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   font-family: sans-serif;
   color: #ccc;
+  overflow: hidden;
 }
+
+#game-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+}
+
 canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 800 / 480;
   background: #1a1a2e;
   border: 2px solid #444;
   image-rendering: pixelated;
 }
-.info { margin-top: 12px; font-size: 14px; }
+
+.info {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* バーチャルコントロール（タッチデバイス専用） */
+#controls {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+#controls-left,
+#controls-right {
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.ctrl-btn {
+  pointer-events: all;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctrl-btn:active {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+#btn-jump {
+  background: rgba(74, 222, 128, 0.25);
+  border-color: #4ade80;
+  font-size: 11px;
+}
+
+#btn-attack {
+  background: rgba(251, 191, 36, 0.25);
+  border-color: #fbbf24;
+}
+
+#btn-dash {
+  background: rgba(34, 211, 238, 0.25);
+  border-color: #22d3ee;
+  font-size: 11px;
+}
+
+/* タッチデバイスのみコントロール表示・info 非表示 */
+@media (pointer: coarse) {
+  #controls {
+    display: flex;
+  }
+  .info {
+    display: none;
+  }
+  canvas {
+    max-height: calc(100dvh - 90px);
+  }
+}
+
+/* 横持ち低解像度スマホ向けボタン縮小 */
+@media (max-height: 500px) {
+  .ctrl-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 14px;
+  }
+  #btn-jump,
+  #btn-dash {
+    font-size: 9px;
+  }
+}
