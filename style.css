@@ -67,11 +67,21 @@ canvas {
   flex-shrink: 0;
 }
 
-/* アクションボタン（横並び） */
+/* アクションボタン（2行：上にZ・JUMP、下中央にDASH） */
 #controls-right {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
   align-items: center;
+}
+
+.action-row {
+  display: flex;
+  gap: 4px;
+}
+
+.action-row-center {
+  justify-content: center;
 }
 
 .ctrl-btn {
