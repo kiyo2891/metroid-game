@@ -48,20 +48,24 @@ canvas {
   align-items: center;
 }
 
-/* 十字キー：3列2行のグリッド */
+/* 十字キー：flex 2行で確実に十字配置 */
 #dpad {
-  display: grid;
-  grid-template-columns: repeat(3, 48px);
-  grid-template-rows: repeat(2, 48px);
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
-/* ▲ は 1行目の中央 */
-#btn-up    { grid-column: 2; grid-row: 1; }
-/* ◀ は 2行目の左 */
-#btn-left  { grid-column: 1; grid-row: 2; }
-/* ▶ は 2行目の右 */
-#btn-right { grid-column: 3; grid-row: 2; }
+.dpad-row {
+  display: flex;
+  gap: 4px;
+}
+
+/* 空きセル（▲の両脇・◀▶の間）*/
+.dpad-cell {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
 
 /* アクションボタン（横並び） */
 #controls-right {
@@ -71,8 +75,8 @@ canvas {
 }
 
 .ctrl-btn {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.4);
@@ -128,10 +132,9 @@ canvas {
   #controls {
     padding: 4px 16px;
   }
-  #dpad {
-    grid-template-columns: repeat(3, 40px);
-    grid-template-rows: repeat(2, 40px);
-    gap: 3px;
+  .dpad-cell {
+    width: 40px;
+    height: 40px;
   }
   .ctrl-btn {
     width: 40px;
