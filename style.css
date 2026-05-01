@@ -1,5 +1,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: #111;
@@ -12,6 +16,7 @@ body {
   font-family: sans-serif;
   color: #ccc;
   overflow: hidden;
+  max-width: 100vw;
 }
 
 #game-wrapper {
@@ -104,6 +109,36 @@ canvas {
   }
   canvas {
     max-height: calc(100dvh - 90px);
+  }
+}
+
+/* 375px 幅スマホ（iPhone SE など）向けボタン縮小 */
+@media (max-width: 420px) {
+  #controls {
+    left: 6px;
+    right: 6px;
+  }
+  #controls-left,
+  #controls-right {
+    gap: 4px;
+  }
+  .ctrl-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 15px;
+  }
+  #btn-jump,
+  #btn-dash {
+    font-size: 9px;
+  }
+}
+
+/* 360px 以下（Galaxy など）向けさらに縮小 */
+@media (max-width: 370px) {
+  .ctrl-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 13px;
   }
 }
 
