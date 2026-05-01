@@ -20,7 +20,6 @@ body {
 }
 
 #game-wrapper {
-  position: relative;
   width: 100%;
   max-width: 800px;
 }
@@ -39,29 +38,41 @@ canvas {
   font-size: 14px;
 }
 
-/* バーチャルコントロール（タッチデバイス専用） */
+/* ===== バーチャルコントロール ===== */
 #controls {
   display: none;
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
+  width: 100%;
+  max-width: 800px;
+  padding: 10px 16px;
   justify-content: space-between;
-  align-items: flex-end;
-  pointer-events: none;
+  align-items: center;
 }
 
-#controls-left,
+/* 十字キー：3列2行のグリッド */
+#dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(2, 48px);
+  gap: 4px;
+}
+
+/* ▲ は 1行目の中央 */
+#btn-up    { grid-column: 2; grid-row: 1; }
+/* ◀ は 2行目の左 */
+#btn-left  { grid-column: 1; grid-row: 2; }
+/* ▶ は 2行目の右 */
+#btn-right { grid-column: 3; grid-row: 2; }
+
+/* アクションボタン（横並び） */
 #controls-right {
   display: flex;
-  gap: 6px;
-  pointer-events: none;
+  gap: 8px;
+  align-items: center;
 }
 
 .ctrl-btn {
-  pointer-events: all;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.4);
@@ -108,49 +119,30 @@ canvas {
     display: none;
   }
   canvas {
-    max-height: calc(100dvh - 90px);
+    max-height: calc(100dvh - 130px);
   }
 }
 
-/* 375px 幅スマホ（iPhone SE など）向けボタン縮小 */
-@media (max-width: 420px) {
-  #controls {
-    left: 6px;
-    right: 6px;
-  }
-  #controls-left,
-  #controls-right {
-    gap: 4px;
-  }
-  .ctrl-btn {
-    width: 46px;
-    height: 46px;
-    font-size: 15px;
-  }
-  #btn-jump,
-  #btn-dash {
-    font-size: 9px;
-  }
-}
-
-/* 360px 以下（Galaxy など）向けさらに縮小 */
-@media (max-width: 370px) {
-  .ctrl-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 13px;
-  }
-}
-
-/* 横持ち低解像度スマホ向けボタン縮小 */
+/* 横持ちスマホ向けボタン縮小 */
 @media (max-height: 500px) {
+  #controls {
+    padding: 4px 16px;
+  }
+  #dpad {
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(2, 40px);
+    gap: 3px;
+  }
   .ctrl-btn {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     font-size: 14px;
   }
   #btn-jump,
   #btn-dash {
     font-size: 9px;
+  }
+  canvas {
+    max-height: calc(100dvh - 100px);
   }
 }
